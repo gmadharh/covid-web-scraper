@@ -37,11 +37,10 @@ with open('results.csv','w',newline='') as f:
     for element in header:
         new_list.append(element.strip())
 
-    # remove \xa0 from the word
-    new_list[8] = new_list[8].replace(u'\xa0', ' ')
-
-    # remove \n from the word
-    new_list[11] = new_list[11].replace('\n',' ')
+    # remove all new lines / weird unicode chars
+    for i,data in enumerate(new_list):
+        new_list[i] = data.replace('\xa0', ' ')
+        new_list[i] = data.replace('\n',' ')
 
     # write the row to the csv
     # header row
